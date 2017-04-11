@@ -1,0 +1,29 @@
+
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio 2012
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CustomerManagement.Model", "CustomerManagement.Model\CustomerManagement.Model.csproj", "{184B3DE6-1A09-420F-937D-897A9187303D}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CustomerManagement.Data", "CustomerManagement.Data\CustomerManagement.Data.csproj", "{A4B76334-D27E-4A13-AE10-A94263E7DC42}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CustomerManagement.Api", "CustomerManagement.Api\CustomerManagement.Api.csproj", "{F5CDA6C2-3673-482F-92B8-08A0C28837B2}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{184B3DE6-1A09-420F-937D-897A9187303D}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{184B3DE6-1A09-420F-937D-897A9187303D}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{184B3DE6-1A09-420F-937D-897A9187303D}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{184B3DE6-1A09-420F-937D-897A9187303D}.Release|Any CPU.Build.0 = Release|Any CPU
+		{A4B76334-D27E-4A13-AE10-A94263E7DC42}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{A4B76334-D27E-4A13-AE10-A94263E7DC42}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{A4B76334-D27E-4A13-AE10-A94263E7DC42}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{A4B76334-D27E-4A13-AE10-A94263E7DC42}.Release|Any CPU.Build.0 = Release|Any CPU
+		{F5CDA6C2-3673-482F-92B8-08A0C28837B2}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{F5CDA6C2-3673-482F-92B8-08A0C28837B2}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{F5CDA6C2-3673-482F-92B8-08A0C28837B2}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{F5CDA6C2-3673-482F-92B8-08A0C28837B2}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+EndGlobal
