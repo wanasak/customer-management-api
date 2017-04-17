@@ -51,7 +51,7 @@ namespace CustomerManagement.Data
 					Gender = "M",
 					Address = "576 Crescent Blvd.",
 					City = "Dallas",
-					StateId = 1
+					StateId = 2
 				},
 				new Customer
 				{
@@ -69,7 +69,7 @@ namespace CustomerManagement.Data
 					Gender = "M",
 					Address = "4651 Tuvo St.",
 					City = "Anaheim",
-					StateId = 1
+					StateId = 3
 				},
 				new Customer
 				{
@@ -78,7 +78,7 @@ namespace CustomerManagement.Data
 					Gender = "M",
 					Address = "9874 Lake Blvd.",
 					City = "Zurich",
-					StateId = 1
+					StateId = 5
 				},
 				new Customer
 				{
@@ -87,7 +87,7 @@ namespace CustomerManagement.Data
 					Gender = "M",
 					Address = "2543 Cassiano",
 					City = "Rio de Janeiro",
-					StateId = 1
+					StateId = 4
 				},
 				new Customer
 				{
@@ -96,7 +96,7 @@ namespace CustomerManagement.Data
 					Gender = "F",
 					Address = "98756 Center St.",
 					City = "Barcelona",
-					StateId = 1
+					StateId = 4
 				},
 				new Customer
 				{
@@ -114,7 +114,7 @@ namespace CustomerManagement.Data
 					Gender = "F",
 					Address = "23423 Adams St.",
 					City = "Los Angeles",
-					StateId = 1
+					StateId = 5
 				},
 				new Customer
 				{
@@ -123,7 +123,7 @@ namespace CustomerManagement.Data
 					Gender = "M",
 					Address = "Los Angeles",
 					City = "Atlanta",
-					StateId = 1
+					StateId = 3
 				},
 				new Customer
 				{
@@ -132,7 +132,7 @@ namespace CustomerManagement.Data
 					Gender = "F",
 					Address = "66 Ray St",
 					City = "Orlando",
-					StateId = 1
+					StateId = 2
 				}
 			};
 			_context.Customers.AddRange(customers);

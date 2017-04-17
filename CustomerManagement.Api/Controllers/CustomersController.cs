@@ -42,11 +42,11 @@ namespace CustomerManagement.Api
 		public IEnumerable<Customer> GetCustomers(int page = 1, int pageSize = 10)
 		{
 			IEnumerable<Customer> customers = _customerRepository
-				.AllIncluding(c => c.Orders, c => c.State)  
+				.AllIncluding(c => c.Orders, c => c.State)
 				.Skip((page - 1) * pageSize)
 				.Take(pageSize)
 				.ToList();
-			
+
 			int totalCustomers = _customerRepository.Count();
 
 			Response.AddPagination(totalCustomers);
@@ -56,7 +56,16 @@ namespace CustomerManagement.Api
 		[HttpPost]
 		public void CreateCustomer([FromBody]Customer customer)
 		{
-			_customerRepository.Add(customer);
+			Customer newCustomer = new Customer()
+			{
+				FirstName = customer.FirstName,
+				LastName = customer.LastName,
+				Gender = customer.Gender,
+				Address = customer.Address,
+				City = customer.City,
+				StateId = customer.StateId
+			};
+			_customerRepository.Add(newCustomer);
 			_customerRepository.Commit();
 		}
 
@@ -64,7 +73,7 @@ namespace CustomerManagement.Api
 		public void UpdateCustomer(int id, [FromBody]Customer customer)
 		{
 			Customer upateCustomer = _customerRepository.GetSingle(id);
-			if (customer != null) 
+			if (customer != null)
 			{
 				upateCustomer.FirstName = customer.FirstName;
 				upateCustomer.LastName = customer.LastName;

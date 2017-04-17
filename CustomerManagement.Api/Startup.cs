@@ -1,12 +1,15 @@
 ﻿using Microsoft.EntityFrameworkCore;
-using CustomerManagement.Data;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
+using Microsoft.AspNetCore.Http;
+using CustomerManagement.Data;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Logging;
 using Newtonsoft.Json.Serialization;
 using System.Security.Claims;
+using System.Net;
+using Microsoft.AspNetCore.Diagnostics;
 
 namespace CustomerManagement.Api
 {
@@ -88,6 +91,26 @@ namespace CustomerManagement.Api
 
 			//loggerFactory.AddConsole(Configuration.GetSection("Logging"));
 			//loggerFactory.AddDebug();
+
+			app.UseExceptionHandler(
+				builder =>
+				{
+					builder.Run(
+					async context =>
+					{
+						context.Response.StatusCode = (int)HttpStatusCode.InternalServerError;
+						context.Response.Headers.Add("Access-Control-Allow-Origin", "*");
+
+						var error = context.Features.Get<IExceptionHandlerFeature>();
+						if (error != null)
+						{
+							context.Response.AddApplicationError(error.Error.Message);
+							await context.Response.WriteAsync(error.Error.Message).ConfigureAwait(false);
+						}
+					}
+					);
+				}
+			);
 
 			app.UseMvc();
 
