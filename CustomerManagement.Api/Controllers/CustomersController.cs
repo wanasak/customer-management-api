@@ -31,7 +31,7 @@ namespace CustomerManagement.Api
 		}
 
 		[HttpGet("{id}")]
-		public Customer Get(int id)
+		public Customer GetCustomer(int id)
 		{
 			return _customerRepository
 				.AllIncluding(c => c.Orders, c => c.State)
@@ -39,7 +39,7 @@ namespace CustomerManagement.Api
 		}
 
 		[HttpGet("page/{page}/{pageSize}")]
-		public IEnumerable<Customer> GetCustomers(int page = 1, int pageSize = 10)
+		public IEnumerable<Customer> GetCustomersPage(int page = 1, int pageSize = 10)
 		{
 			IEnumerable<Customer> customers = _customerRepository
 				.AllIncluding(c => c.Orders, c => c.State)

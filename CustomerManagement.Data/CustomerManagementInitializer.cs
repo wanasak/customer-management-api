@@ -11,204 +11,220 @@ namespace CustomerManagement.Data
 		public static void Initialize(IServiceProvider serviceProvider)
 		{
 			_context = (CustomerManagementContext)serviceProvider.GetService(typeof(CustomerManagementContext));
-
+			InitializeData();
+		}
+		public static void Initialize(CustomerManagementContext context)
+		{
+			_context = context;
 			InitializeData();
 		}
 		private static void InitializeData()
 		{
-			InitStates();
+			InitializeStates();
 			InitializeUser();
 			InitializeCustomers();
 			InitializeOrders();
 		}
 		private static void InitializeUser()
 		{
-			User user = new User
+			if (!_context.Users.Any())
 			{
-				Email = "admin@admin.com",
-				Password = "admin123"
-			};
-			_context.Users.Add(user);
-			_context.SaveChanges();
+				User user = new User
+				{
+					Email = "admin@admin.com",
+					Password = "admin123"
+				};
+				_context.Users.Add(user);
+				_context.SaveChanges();
+			}
 		}
 		private static void InitializeCustomers()
 		{
-			List<Customer> customers = new List<Customer>
+			if (!_context.Customers.Any())
 			{
-				new Customer
+				List<Customer> customers = new List<Customer>
 				{
-					FirstName = "Alex",
-					LastName = "Sailorm",
-					Gender = "M",
-					Address = "345 Cedar Point Ave.",
-					City = "Encinitas",
-					StateId = 1
-				},
-				new Customer
-				{
-					FirstName = "Ron",
-					LastName = "Samir",
-					Gender = "M",
-					Address = "576 Crescent Blvd.",
-					City = "Dallas",
-					StateId = 2
-				},
-				new Customer
-				{
-					FirstName = "Page",
-					LastName = "Collin",
-					Gender = "M",
-					Address = "9874 Center St.",
-					City = "Orlando",
-					StateId = 1
-				},
-				new Customer
-				{
-					FirstName = "Lynton",
-					LastName = "Emmerson",
-					Gender = "M",
-					Address = "4651 Tuvo St.",
-					City = "Anaheim",
-					StateId = 3
-				},
-				new Customer
-				{
-					FirstName = "David",
-					LastName = "Bridger",
-					Gender = "M",
-					Address = "9874 Lake Blvd.",
-					City = "Zurich",
-					StateId = 5
-				},
-				new Customer
-				{
-					FirstName = "Tony",
-					LastName = "Jonathan",
-					Gender = "M",
-					Address = "2543 Cassiano",
-					City = "Rio de Janeiro",
-					StateId = 4
-				},
-				new Customer
-				{
-					FirstName = "Somchai",
-					LastName = "Willis",
-					Gender = "F",
-					Address = "98756 Center St.",
-					City = "Barcelona",
-					StateId = 4
-				},
-				new Customer
-				{
-					FirstName = "Fitz",
-					LastName = "Murray",
-					Gender = "M",
-					Address = "12 Ocean View St.",
-					City = "New York",
-					StateId = 1
-				},
-				new Customer
-				{
-					FirstName = "Fletcher",
-					LastName = "Alva",
-					Gender = "F",
-					Address = "23423 Adams St.",
-					City = "Los Angeles",
-					StateId = 5
-				},
-				new Customer
-				{
-					FirstName = "Zach",
-					LastName = "Alvin",
-					Gender = "M",
-					Address = "Los Angeles",
-					City = "Atlanta",
-					StateId = 3
-				},
-				new Customer
-				{
-					FirstName = "John",
-					LastName = "Papa",
-					Gender = "F",
-					Address = "66 Ray St",
-					City = "Orlando",
-					StateId = 2
-				}
-			};
-			_context.Customers.AddRange(customers);
-			_context.SaveChanges();
+					new Customer
+					{
+						FirstName = "Alex",
+						LastName = "Sailorm",
+						Gender = "M",
+						Address = "345 Cedar Point Ave.",
+						City = "Encinitas",
+						StateId = 1
+					},
+					new Customer
+					{
+						FirstName = "Ron",
+						LastName = "Samir",
+						Gender = "F",
+						Address = "576 Crescent Blvd.",
+						City = "Dallas",
+						StateId = 2
+					},
+					new Customer
+					{
+						FirstName = "Page",
+						LastName = "Collin",
+						Gender = "M",
+						Address = "9874 Center St.",
+						City = "Orlando",
+						StateId = 1
+					},
+					new Customer
+					{
+						FirstName = "Lynton",
+						LastName = "Emmerson",
+						Gender = "M",
+						Address = "4651 Tuvo St.",
+						City = "Anaheim",
+						StateId = 3
+					},
+					new Customer
+					{
+						FirstName = "David",
+						LastName = "Bridger",
+						Gender = "M",
+						Address = "9874 Lake Blvd.",
+						City = "Zurich",
+						StateId = 5
+					},
+					new Customer
+					{
+						FirstName = "Tony",
+						LastName = "Jonathan",
+						Gender = "M",
+						Address = "2543 Cassiano",
+						City = "Rio de Janeiro",
+						StateId = 4
+					},
+					new Customer
+					{
+						FirstName = "Somchai",
+						LastName = "Willis",
+						Gender = "F",
+						Address = "98756 Center St.",
+						City = "Barcelona",
+						StateId = 4
+					},
+					new Customer
+					{
+						FirstName = "Fitz",
+						LastName = "Murray",
+						Gender = "M",
+						Address = "12 Ocean View St.",
+						City = "New York",
+						StateId = 1
+					},
+					new Customer
+					{
+						FirstName = "Fletcher",
+						LastName = "Alva",
+						Gender = "F",
+						Address = "23423 Adams St.",
+						City = "Los Angeles",
+						StateId = 5
+					},
+					new Customer
+					{
+						FirstName = "Zach",
+						LastName = "Alvin",
+						Gender = "M",
+						Address = "Los Angeles",
+						City = "Atlanta",
+						StateId = 3
+					},
+					new Customer
+					{
+						FirstName = "John",
+						LastName = "Papa",
+						Gender = "F",
+						Address = "66 Ray St",
+						City = "Orlando",
+						StateId = 2
+					}
+				};
+				_context.Customers.AddRange(customers);
+				_context.SaveChanges();
+			}
 		}
 		private static void InitializeOrders()
 		{
-			List<Order> orders = new List<Order>
+			if (!_context.Orders.Any())
 			{
-				new Order
+				List<Order> orders = new List<Order>
 				{
-					ProductName = "Basketball",
-					ItemCost = 25,
-					CustomerId = 1
-				},
-				new Order
-				{
-					ProductName = "Shoes",
-					ItemCost = 5.25M,
-					CustomerId = 1
-				},
-				new Order
-				{
-					ProductName = "Frisbee",
-					ItemCost = 178.50M,
-					CustomerId = 2
-				},
-				new Order
-				{
-					ProductName = "Hat",
-					ItemCost = 2.99M,
-					CustomerId = 3
-				},
-				new Order
-				{
-					ProductName = "Boomerang",
-					ItemCost = 29.98M,
-					CustomerId = 3
-				}
-			};
-			_context.Orders.AddRange(orders);
-			_context.SaveChanges();
+					new Order
+					{
+						ProductName = "Basketball",
+						ItemCost = 25,
+						CustomerId = 1
+					},
+					new Order
+					{
+						ProductName = "Shoes",
+						ItemCost = 5.25M,
+						CustomerId = 1
+					},
+					new Order
+					{
+						ProductName = "Frisbee",
+						ItemCost = 178.50M,
+						CustomerId = 2
+					},
+					new Order
+					{
+						ProductName = "Hat",
+						ItemCost = 2.99M,
+						CustomerId = 3
+					},
+					new Order
+					{
+						ProductName = "Boomerang",
+						ItemCost = 29.98M,
+						CustomerId = 3
+					}
+				};
+				_context.Orders.AddRange(orders);
+				_context.SaveChanges();
+			}
 		}
-		private static void InitStates()
+		private static void InitializeStates()
 		{
-			List<State> states = new List<State>
+			if (!_context.States.Any())
 			{
-				new State
+				List<State> states = new List<State>
 				{
-					Name = "Alabama",
-					Abbreviation = "AL"
-				},
-				new State
-				{
-					Name = "California",
-					Abbreviation = "CA"
-				},
-				new State
-				{
-					Name = "Illinois",
-					Abbreviation = "IL"
-				},
-				new State
-				{
-					Name = "Mississippi",
-					Abbreviation = "MS"
-				},
-				new State
-				{
-					Name = "New Mexico",
-					Abbreviation = "NM"
-				}
+					new State
+					{
+						Name = "Alabama",
+						Abbreviation = "AL"
+					},
+					new State
+					{
+						Name = "California",
+						Abbreviation = "CA"
+					},
+					new State
+					{
+						Name = "Illinois",
+						Abbreviation = "IL"
+					},
+					new State
+					{
+						Name = "Mississippi",
+						Abbreviation = "MS"
+					},
+					new State
+					{
+						Name = "New Mexico",
+						Abbreviation = "NM"
+					}
 
-			};
-			_context.States.AddRange(states);
-			_context.SaveChanges();
+				};
+				_context.States.AddRange(states);
+				_context.SaveChanges();
+			}
 		}
 	}
 }
